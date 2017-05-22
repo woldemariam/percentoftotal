@@ -1,3 +1,23 @@
 <h1>
-  {{title}}
+  Grand total: {{total}}
 </h1>
+
+
+
+
+<table width=400px>
+  <tr *ngFor="let item of items;let i = index">
+    <td>{{item.name}}</td>
+    <td *ngIf='!item.beingEdited' (dblclick)='changing(item)' >{{item.value}}</td>
+    <td *ngIf='item.beingEdited'><input [(ngModel)]="item.value" (blur)='changed(item)' /></td>
+    <td>{{item.percent | percent:'1.0-2'}}</td>
+    <td (click)='remove(i)'>Remove</td>
+    
+    
+  </tr>
+</table>
+
+
+ <input placeholder="stock ticker" [(ngModel)]="newName" >
+ <input [(ngModel)]="newValue" placeholder="value of stock" >
+<button (click)='add()'>Add</button>
